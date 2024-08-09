@@ -4,18 +4,22 @@ using UnityEngine;
 
 public class CameraControl : MonoBehaviour
 {
-    public float lookSpeed, lookSpeedVertical, upBound, downBound, changePosSpeed;
+    public float distance, orbitSpeed;
+    private float currentAngle = 0f;
     public Transform[] towerList;
-    float verticalBound = 0f;
+    public Transform targetFocus;
     int i = 0;
     void Look(){
-        float mouseX = Input.GetAxis("Mouse X");
-        float mouseY = Input.GetAxis("Mouse Y");
+        transform.LookAt(targetFocus);
 
-        transform.eulerAngles += new Vector3(0, mouseX * lookSpeed * Time.deltaTime, 0);
-        verticalBound += mouseY * lookSpeedVertical * Time.deltaTime;
-        verticalBound = Mathf.Clamp(verticalBound, downBound, upBound);
-        transform.eulerAngles = new Vector3(verticalBound, transform.eulerAngles.y, transform.eulerAngles.z);
+        if(Input.GetKey(KeyCode.A)){
+            currentAngle += orbitSpeed * Time.deltaTime;
+        } else if(Input.GetKey(KeyCode.D)){
+            currentAngle -= orbitSpeed * Time.deltaTime;
+        }
+
+        Vector3 offset = new Vector3(Mathf.Sin(currentAngle) * distance, 5, Mathf.Cos(currentAngle) * distance);
+        transform.position = targetFocus.position + offset;
     }
 
     void changePos(){
@@ -35,12 +39,12 @@ public class CameraControl : MonoBehaviour
     void Update()
     {
         Look();
-        if(Input.GetKeyDown(KeyCode.Q) || Input.GetKeyDown(KeyCode.E)){
-            changePos();
-        }
-        float percentageComplete = Time.deltaTime / changePosSpeed;
-        Vector3 startPos = transform.position;
-        Vector3 targetPos = new Vector3(towerList[i].position.x, towerList[i].position.y + 2f, towerList[i].position.z);
-        transform.position = Vector3.Lerp(startPos, targetPos, percentageComplete);
+        // if(Input.GetKeyDown(KeyCode.Q) || Input.GetKeyDown(KeyCode.E)){
+        //     changePos();
+        // }
+        // float percentageComplete = Time.deltaTime / changePosSpeed;
+        // Vector3 startPos = transform.position;
+        // Vector3 targetPos = new Vector3(towerList[i].position.x, towerList[i].position.y + 2f, towerList[i].position.z);
+        // transform.position = Vector3.Lerp(startPos, targetPos, percentageComplete);
     }
 }
