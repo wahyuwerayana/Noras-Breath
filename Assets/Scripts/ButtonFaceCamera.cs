@@ -4,15 +4,13 @@ using UnityEngine;
 
 public class ButtonFaceCamera : MonoBehaviour
 {
-    [SerializeField]
+    [Header("Camera Reference")][SerializeField]
     private Camera mainCamera;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
-    // Update is called once per frame
+    private void Start() {
+        mainCamera = Camera.main;
+    }
+    
     void Update()
     {
         transform.LookAt(mainCamera.transform);

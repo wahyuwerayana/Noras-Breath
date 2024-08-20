@@ -4,10 +4,20 @@ using UnityEngine;
 
 public class CameraControl : MonoBehaviour
 {
-    public float distance, height, orbitSpeed, changePosSpeed;
+    [Header("Camera Properties")]
+    public float distance;
+    public float height;
+    public float orbitSpeed; 
+    public float changePosSpeed;
     private float currentAngle = 0f;
+    [SerializeField]
+    private float cooldown;
+    
+    [Header("Arena Lookat")]
     public Transform[] targetFocus;
+    
     int i = 0;
+    bool onCooldown = false;
     void Look(){
         transform.LookAt(targetFocus[i]);
 
@@ -24,21 +34,26 @@ public class CameraControl : MonoBehaviour
         transform.position = Vector3.Slerp(startPos, targetPos + offset, percentageComplete);
     }
 
-    void changePos(){
+    IEnumerator ChangePos(float cooldown){
+        onCooldown = true;
+
         if(Input.GetKey(KeyCode.Q)){
             if(i > 0)
                 i--;
         } else if(Input.GetKey(KeyCode.E)){
-            if(i < 3)
+            if(i < targetFocus.Length - 1)
                 i++;
         }
+
+        yield return new WaitForSeconds(cooldown);
+        onCooldown = false;
     }
 
     void Update()
     {
         Look();
-        if(Input.GetKeyDown(KeyCode.Q) || Input.GetKeyDown(KeyCode.E)){
-            changePos();
+        if((Input.GetKeyDown(KeyCode.Q) || Input.GetKeyDown(KeyCode.E)) && !onCooldown){
+            StartCoroutine(ChangePos(cooldown));
         }
     }
 }

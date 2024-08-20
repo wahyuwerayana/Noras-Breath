@@ -254,7 +254,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   button: {fileID: 6313246340162193412}
-  hovering: 0
 --- !u!1 &1241942061381325130
 GameObject:
   m_ObjectHideFlags: 0
@@ -838,7 +837,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   button: {fileID: 1436902381238248775}
-  hovering: 0
 --- !u!65 &3758251256390545444
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1019,6 +1017,37 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mainCamera: {fileID: 0}
+--- !u!1 &3714735043192229928
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4671604906650954765}
+  m_Layer: 0
+  m_Name: Lookat
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4671604906650954765
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3714735043192229928}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.2018, y: -0.0427, z: 0.6349}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1002701947923986921}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3836049055713195650
 GameObject:
   m_ObjectHideFlags: 0
@@ -1143,6 +1172,7 @@ Transform:
   - {fileID: 2659747165241347116}
   - {fileID: 3463331405486734772}
   - {fileID: 3621844253146015124}
+  - {fileID: 4671604906650954765}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &925209964418094708
@@ -1901,7 +1931,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   button: {fileID: 3334699274458183108}
-  hovering: 0
 --- !u!1 &6734570111037648681
 GameObject:
   m_ObjectHideFlags: 0
@@ -2022,7 +2051,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   button: {fileID: 8638948151241785106}
-  hovering: 0
 --- !u!1 &7182687502935099210
 GameObject:
   m_ObjectHideFlags: 0
@@ -2143,7 +2171,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   button: {fileID: 3334699274458183108}
-  hovering: 0
 --- !u!1 &7197717549943558675
 GameObject:
   m_ObjectHideFlags: 0
@@ -2242,7 +2269,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   button: {fileID: 8710435415394534193}
-  hovering: 0
 --- !u!65 &3495460223126064186
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2623,7 +2649,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   button: {fileID: 2773610890762961306}
-  hovering: 0
 --- !u!1 &8252192717044254000
 GameObject:
   m_ObjectHideFlags: 0

@@ -6,9 +6,10 @@ using UnityEngine.UI;
 
 public class ClickableObject : MonoBehaviour
 {
+    [Header("Button Reference")]
     public GameObject button;
-    bool currentState = false; 
-    public bool hovering = false;
+
+    bool currentState = false, hovering = false;
     private void OnMouseOver(){
         hovering = true;
         if(Input.GetMouseButtonDown(0)){
@@ -22,7 +23,7 @@ public class ClickableObject : MonoBehaviour
     }
 
     private void Update(){
-        if(currentState == true && Input.GetMouseButtonDown(0) && hovering == false && !EventSystem.current.IsPointerOverGameObject()){
+        if(currentState && Input.GetMouseButtonDown(0) && hovering == false && !EventSystem.current.IsPointerOverGameObject()){
             currentState = false;
             button.SetActive(currentState);
         }
