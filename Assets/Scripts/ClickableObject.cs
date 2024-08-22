@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -7,14 +8,31 @@ using UnityEngine.UI;
 public class ClickableObject : MonoBehaviour
 {
     [Header("Button Reference")]
-    public GameObject button;
+    private GameObject canvas;
+    private GameObject multiButton;
+    private Button singleButton;
+    public bool needTwoButton;
 
+    
+    private static ClickableObject previousClickableObject = null;
     bool currentState = false, hovering = false;
     private void OnMouseOver(){
         hovering = true;
+        
         if(Input.GetMouseButtonDown(0)){
+            if(previousClickableObject != null && previousClickableObject != this)
+                previousClickableObject.ResetState();
+
             currentState = !currentState;
-            button.SetActive(currentState);
+            if(needTwoButton){
+                multiButton.transform.position = multiButton.transform.position = new Vector3(transform.position.x, transform.position.y + .5f, transform.position.z);
+                multiButton.SetActive(currentState);
+            } else if(!needTwoButton){
+                singleButton.transform.position = singleButton.transform.position = new Vector3(transform.position.x, transform.position.y +.5f, transform.position.z);
+                singleButton.gameObject.SetActive(currentState);
+            }
+
+            previousClickableObject = this;
         }
     }
 
@@ -22,14 +40,23 @@ public class ClickableObject : MonoBehaviour
         hovering = false;
     }
 
+    private void Start() {
+        canvas = GameObject.Find("Button Canvas");
+        singleButton = canvas.transform.GetChild(0).GetComponent<Button>();
+        multiButton = canvas.transform.GetChild(1).gameObject;
+        if(gameObject.name == "Ground")
+            needTwoButton = true;
+    }
+    
     private void Update(){
-        if(currentState && Input.GetMouseButtonDown(0) && hovering == false && !EventSystem.current.IsPointerOverGameObject()){
-            currentState = false;
-            button.SetActive(currentState);
-        }
+        if(currentState && !hovering && Input.GetMouseButtonDown(0) && !EventSystem.current.IsPointerOverGameObject()){
+            ResetState();
+        } 
+    }
 
-        if(button.activeSelf == false && currentState == true){
-            currentState = false;
-        }
-    } 
+    private void ResetState(){
+        currentState = false;
+        singleButton.gameObject.SetActive(false);
+        multiButton.gameObject.SetActive(false);
+    }
 }
