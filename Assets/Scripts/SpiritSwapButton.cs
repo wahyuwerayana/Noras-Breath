@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using System.Collections;
 
 public class SpiritSwapButton : MonoBehaviour
 {
@@ -8,28 +9,57 @@ public class SpiritSwapButton : MonoBehaviour
     private Animator anim;
     public string itemName;
     public TextMeshProUGUI itemText;
+    public SpiritSwapWheelController script;
     //public Image selectedItem;
     private bool selected = false;
     //public Sprite icon;
+    [SerializeField]
+    private float cooldownDuration;
 
-    // Start is called before the first frame update
+    private Button button;
+    static bool onCooldown = false;
+    private static SpiritSwapButton lastSelectedButton;
+    
     void Start()
     {
         anim = GetComponent<Animator>();
+        button = this.GetComponent<Button>();
     }
 
-    // Update is called once per frame
+    
     void Update()
     {
         if(selected){
             //selectedItem.sprite = icon;
             itemText.text = itemName;
         }
+
+        if(onCooldown){
+            button.interactable = false;
+        } else{
+            button.interactable = true;
+        }
     }
 
     public void Selected(){
-        selected = true;
-        SpiritSwapWheelController.spiritID = ID;
+        StartCoroutine(ChangeElement());
+        IEnumerator ChangeElement(){
+            onCooldown = true;
+            selected = true;
+            SpiritSwapWheelController.spiritID = ID;
+            script.changed = false;
+
+            float remainingCooldown = cooldownDuration;
+
+            while(remainingCooldown > 0){
+                remainingCooldown -= Time.deltaTime;
+                itemText.text = remainingCooldown.ToString("F2") + "s"; 
+                yield return null;
+            }
+            
+            itemText.text = "";
+            onCooldown = false;
+        }
     }
 
     public void Deselected(){

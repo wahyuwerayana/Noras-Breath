@@ -8,6 +8,8 @@ public class SpiritSwapWheelController : MonoBehaviour
     public Image selectedItem;
     public Sprite noImage;
     public static int spiritID;
+
+    public bool changed = false;
     
     void Update()
     {
@@ -24,20 +26,29 @@ public class SpiritSwapWheelController : MonoBehaviour
         }
 
         switch(spiritID){
-            case 0:
-                Debug.Log("Nothing");
-                break;
             case 1:
-                Debug.Log("Wind");
+                if(!changed){
+                    Debug.Log("Wind");
+                    changed = true;
+                }
                 break;
             case 2:
-                Debug.Log("Water");
+                if(!changed){
+                    Debug.Log("Water");
+                    changed = true;
+                }
                 break;
             case 3:
-                Debug.Log("Forest");
+                if(!changed){
+                    Debug.Log("Forest");
+                    changed = true;
+                }
                 break;
             case 4:
-                Debug.Log("Earth");
+                if(!changed){
+                    Debug.Log("Earth");
+                    changed = true;
+                }
                 break;
         }
     }
