@@ -12,6 +12,7 @@ public class ClickableObject : MonoBehaviour
     private GameObject multiButton;
     private Button singleButton;
     public bool needTwoButton;
+    private BuildObjectController buildObjectControllerReference;
 
     
     private static ClickableObject previousClickableObject = null;
@@ -24,6 +25,7 @@ public class ClickableObject : MonoBehaviour
                 previousClickableObject.ResetState();
 
             currentState = !currentState;
+            buildObjectControllerReference.currentTransform = this.transform;
             if(needTwoButton){
                 multiButton.transform.position = multiButton.transform.position = new Vector3(transform.position.x, transform.position.y + .5f, transform.position.z);
                 multiButton.SetActive(currentState);
@@ -46,6 +48,7 @@ public class ClickableObject : MonoBehaviour
         multiButton = canvas.transform.GetChild(1).gameObject;
         if(gameObject.name == "Ground")
             needTwoButton = true;
+        buildObjectControllerReference = canvas.GetComponent<BuildObjectController>();
     }
     
     private void Update(){
@@ -54,7 +57,7 @@ public class ClickableObject : MonoBehaviour
         } 
     }
 
-    private void ResetState(){
+    public void ResetState(){
         currentState = false;
         singleButton.gameObject.SetActive(false);
         multiButton.gameObject.SetActive(false);
