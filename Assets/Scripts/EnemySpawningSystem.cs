@@ -1,6 +1,6 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Lean.Pool;
 
 public class EnemySpawningSystem : MonoBehaviour
 {
@@ -8,6 +8,6 @@ public class EnemySpawningSystem : MonoBehaviour
     public Vector3 offset;
     public void SpawnEnemy(Transform spawnPos){
         Debug.Log("Wave Start!");
-        GameObject enemy = Instantiate(enemyPrefabs[Random.Range(0, enemyPrefabs.Count)], spawnPos.position + offset, spawnPos.rotation);
+        GameObject enemy = LeanPool.Spawn(enemyPrefabs[Random.Range(0, enemyPrefabs.Count)], spawnPos.position + offset, spawnPos.rotation);
     }
 }

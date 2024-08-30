@@ -1,5 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
+using Lean.Pool;
 using UnityEngine;
 
 public class Portal : MonoBehaviour
@@ -12,8 +11,9 @@ public class Portal : MonoBehaviour
                 other.transform.position = nextPortal.position + portalOffset;
                 other.transform.rotation = nextPortal.rotation;
             } else{
-                Destroy(other.gameObject);
+                LeanPool.Despawn(other.gameObject);
             }
+            AudioManager.instance.Play("Portal Sound");
         }
     }
 }

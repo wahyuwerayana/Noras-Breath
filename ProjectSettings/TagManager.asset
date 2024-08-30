@@ -9,6 +9,7 @@ TagManager:
   - Large Island Portal
   - Small Island Portal Enter
   - Large Island Portal Enter
+  - Waypoint
   layers:
   - Default
   - TransparentFX
@@ -18,8 +19,8 @@ TagManager:
   - UI
   - Path
   - Grass
-  - 
-  - 
+  - Enemy
+  - Barricade
   - 
   - 
   - 
