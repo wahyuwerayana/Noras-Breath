@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class InitiateIsland : MonoBehaviour
@@ -17,6 +16,11 @@ public class InitiateIsland : MonoBehaviour
     
     void Start()
     {
+        StartIslandSpawning();
+    }
+
+    public void StartIslandSpawning(){
+        Time.timeScale = 1;
         cameraControlScript.targetFocus = new Transform[4];
         enemySpawnSystem = this.GetComponent<EnemySpawningSystem>();
         
@@ -50,6 +54,7 @@ public class InitiateIsland : MonoBehaviour
 
         Enemy.waypoints = enemyWaypoints;
         Portal.portalOffset = enemySpawnSystem.offset;
+        Portal.gameManagerScript = GameObject.Find("Game Manager").GetComponent<GameManager>();
         enemySpawnSystem.SpawnEnemy(firstPortalEnter);
     }
 }

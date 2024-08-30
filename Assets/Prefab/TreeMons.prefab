@@ -2799,6 +2799,7 @@ GameObject:
   - component: {fileID: 214726405485309696}
   - component: {fileID: 4577119851289401580}
   - component: {fileID: 7338626662962983526}
+  - component: {fileID: -3666147463831130900}
   m_Layer: 8
   m_Name: TreeMons
   m_TagString: Enemy
@@ -2835,15 +2836,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8413782c3f795dd4ba15c2b6d076508d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyHP: 100
+  enemyMaxHP: 100
   enemySpeed: 0.2
   enemyATKSpeed: 1093.5
+  enemyATK: 5
   offset: 0.106
   obstacleLayer:
     serializedVersion: 2
     m_Bits: 512
   detectionRange: 1
   attackDelay: 2
+  healthBarPrefab: {fileID: 8204198891651837361, guid: 536ef029cdc76f846a9d3f8dc786b0ca, type: 3}
 --- !u!54 &214726405485309696
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2913,6 +2916,18 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &-3666147463831130900
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7893654660210954378}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a47bac80a21a18b4b91b990df1cb4e7a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7997807492245629308
 GameObject:
   m_ObjectHideFlags: 0

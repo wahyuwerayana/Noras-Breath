@@ -2,12 +2,15 @@ using System.Collections.Generic;
 using System.Collections;
 using Lean.Pool;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Enemy : MonoBehaviour
 {
-    public float enemyHP;
+    public float enemyMaxHP;
+    private float enemyCurrentHP;
     public float enemySpeed;
     public float enemyATKSpeed;
+    public int enemyATK;
     public static List<Transform> waypoints;
     private int waypointIndex = 0;
     public float offset;
@@ -16,10 +19,22 @@ public class Enemy : MonoBehaviour
     public float detectionRange = 1f;
     private float lastAttackTime = 0f;
     public float attackDelay = 2f;
+    public GameObject healthBarPrefab;
+    private GameObject healthBar;
+    private Slider healthSlider;
     bool walkSoundEnabled = false;
 
     private void Start() {
         animator = GetComponent<Animator>();
+        healthBar = LeanPool.Spawn(healthBarPrefab, transform.position + new Vector3(0, 0.5f, 0), Quaternion.identity);
+        healthSlider = healthBar.GetComponentInChildren<Slider>();
+        healthBar.transform.SetParent(transform);
+        enemyCurrentHP = enemyMaxHP;
+        healthSlider.value = enemyCurrentHP / enemyMaxHP;
+    }
+
+    private void OnEnable() {
+        waypointIndex = 0;
     }
 
 
@@ -32,8 +47,10 @@ public class Enemy : MonoBehaviour
     }
 
     public void TakeDamage(float damage){
-        enemyHP -= damage;
-        if(enemyHP <= 0){
+        enemyCurrentHP -= damage;
+        healthSlider.value = enemyCurrentHP / enemyMaxHP;
+        Debug.Log(enemyCurrentHP / enemyMaxHP);
+        if(enemyCurrentHP <= 0){
             Die();
         }
     }
