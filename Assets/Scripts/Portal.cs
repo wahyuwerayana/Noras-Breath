@@ -13,7 +13,7 @@ public class Portal : MonoBehaviour
                 other.transform.rotation = nextPortal.rotation;
             } else{
                 gameManagerScript.PlayerTakeDamage(other.GetComponent<Enemy>().enemyATK);
-                LeanPool.Despawn(other.gameObject);
+                Destroy(other.gameObject);
             }
             AudioManager.instance.Play("Portal Sound");
         }

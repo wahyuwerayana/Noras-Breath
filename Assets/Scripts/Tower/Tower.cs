@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Lean.Pool;
 using UnityEngine;
 
 public class Tower : MonoBehaviour
@@ -48,7 +49,7 @@ public class Tower : MonoBehaviour
     }
 
     void Shoot(){
-        GameObject projectileGO = (GameObject)Instantiate(projectilePrefab, firePoint.position, firePoint.rotation);
+        GameObject projectileGO = (GameObject)LeanPool.Spawn(projectilePrefab, firePoint.position, firePoint.rotation);
         Projectile projectile = projectileGO.GetComponent<Projectile>();
 
         if(projectile != null){
