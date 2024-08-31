@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Lean.Pool;
 using UnityEngine;
 
 public class Projectile : MonoBehaviour
@@ -17,7 +18,7 @@ public class Projectile : MonoBehaviour
     void Update()
     {
         if(target == null){
-            Destroy(gameObject);
+            LeanPool.Despawn(gameObject);
             return;
         }
 

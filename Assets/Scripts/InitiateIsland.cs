@@ -55,6 +55,6 @@ public class InitiateIsland : MonoBehaviour
         Enemy.waypoints = enemyWaypoints;
         Portal.portalOffset = enemySpawnSystem.offset;
         Portal.gameManagerScript = GameObject.Find("Game Manager").GetComponent<GameManager>();
-        enemySpawnSystem.SpawnEnemy(firstPortalEnter);
+        enemySpawnSystem.spawnPos = firstPortalEnter;
     }
 }
