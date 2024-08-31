@@ -22,6 +22,8 @@ public class Enemy : MonoBehaviour
     private GameObject healthBar;
     private Slider healthSlider;
     bool walkSoundEnabled = false;
+    public float walksoundDelay;
+    public bool isDead = false;
 
     private void Start() {
         animator = GetComponent<Animator>();
@@ -34,9 +36,10 @@ public class Enemy : MonoBehaviour
 
     void Update()
     {
-        Move();
+        if(!isDead)
+            Move();
         if(transform.position.y <= 0){
-            Die();
+            Destroy(gameObject);
         }
     }
 
@@ -44,12 +47,15 @@ public class Enemy : MonoBehaviour
         enemyCurrentHP -= damage;
         healthSlider.value = enemyCurrentHP / enemyMaxHP;
         if(enemyCurrentHP <= 0){
+            isDead = true;
             Die();
         }
     }
 
     void Die(){
-        Destroy(gameObject);
+        animator.SetTrigger("die");
+        GameManager.spiritShard += 5;
+        Destroy(gameObject, 1f);
     }
 
     void Move(){
@@ -65,7 +71,7 @@ public class Enemy : MonoBehaviour
                 transform.rotation = Quaternion.Lerp(transform.rotation, lookRotation, Time.deltaTime * 1f);
                 transform.position = Vector3.MoveTowards(transform.position, target.position, enemySpeed * Time.deltaTime);
                 if(!walkSoundEnabled)
-                    StartCoroutine(playSound(1f, "Enemy Footstep"));
+                    StartCoroutine(playSound(walksoundDelay, "Enemy Footstep"));
             } else{
                 animator.SetFloat("y", 0f);
                 if(Time.time >= lastAttackTime){
@@ -80,8 +86,10 @@ public class Enemy : MonoBehaviour
 
     private void OnTriggerEnter(Collider other) {
         if(other.CompareTag("Waypoint")){
-            if(waypointIndex < waypoints.Count - 1)
+            if(waypointIndex < waypoints.Count - 1){
                 waypointIndex++;
+                Debug.Log("Current Waypoint: " + other.name);
+            }
         }
     }
 

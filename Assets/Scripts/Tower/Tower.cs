@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Lean.Pool;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Tower : MonoBehaviour
@@ -16,6 +17,9 @@ public class Tower : MonoBehaviour
     private Transform target;
 
     private void Update() {
+        if(target != null && target.GetComponent<Enemy>().isDead)
+            target = null;
+
         FindTarget();
 
         if(target != null){
@@ -35,13 +39,13 @@ public class Tower : MonoBehaviour
 
         foreach(GameObject enemy in enemies){
             float distanceToEnemy = Vector3.Distance(transform.position, enemy.transform.position);
-            if(distanceToEnemy < shortestDistance){
+            if((distanceToEnemy < shortestDistance) && enemy.GetComponent<Enemy>().isDead == false){
                 shortestDistance = distanceToEnemy;
                 nearestEnemy = enemy;
             }
         }
 
-        if(nearestEnemy != null && shortestDistance <= towerRange){
+        if((nearestEnemy != null && shortestDistance <= towerRange) && nearestEnemy.GetComponent<Enemy>().isDead == false){
             target = nearestEnemy.transform;
         } else{
             target = null;

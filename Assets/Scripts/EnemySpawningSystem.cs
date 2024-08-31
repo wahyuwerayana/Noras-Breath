@@ -14,7 +14,6 @@ public class EnemySpawningSystem : MonoBehaviour
     float waveCountdown;
     public TMP_Text countdownText;
     public GameObject startButtonParent;
-    private IEnumerator countdownRoutine;
     bool whileBreak = false;
     public void StartWave(){
         StartCoroutine(SpawnEnemy());
@@ -55,14 +54,6 @@ public class EnemySpawningSystem : MonoBehaviour
             return ((currWave - 1) / 10) * 2 + 10;
         
         return GetEnemyTotal(currWave - (currWave % 10)) * 1.2f;
-    }
-
-    private void Start() {
-        countdownRoutine = InitiateCountdown();
-    }
-
-    private void Update() {
-        
     }
 
     
