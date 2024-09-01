@@ -9,31 +9,38 @@ public class EnemySpawningSystem : MonoBehaviour
     public Vector3 offset;
     public Transform spawnPos;
     int enemyTotal;
-    int wave = 0;
+    int wave = 10;
     float waveCountdown;
     public TMP_Text countdownText;
     public TMP_Text numberOfEnemy;
     public GameObject startButtonParent;
-    bool whileBreak = false;
+    bool whileBreak = false, waveElevenAbove = false;
     public void StartWave(){
         StartCoroutine(SpawnEnemy());
         IEnumerator SpawnEnemy(){
             numberOfEnemy.gameObject.SetActive(false);
+            waveElevenAbove = false;
             whileBreak = true;
             StopCoroutine(InitiateCountdown());
             countdownText.text = "";
             startButtonParent.gameObject.SetActive(false);
             wave++;
-            //Debug.Log("Wave: " + wave +  " Start!");
             enemyTotal = (int)GetEnemyTotal(wave);
             int enemyRemaining = enemyTotal;
             //Debug.Log(enemyRemaining);
+            Debug.Log("Wave: " + wave +  " Start!");
             while(enemyRemaining > 0){
                 Instantiate(enemyPrefabs[Random.Range(0, enemyPrefabs.Count)], spawnPos.position + offset, spawnPos.rotation);
                 enemyRemaining--;
                 //Debug.Log(enemyRemaining);
-                if(wave >= 11 && enemyRemaining <= enemyTotal - Mathf.Round((float)(enemyTotal * 0.8f)))
+                if(wave >= 11 && (enemyRemaining <= enemyTotal - Mathf.Round((float)(enemyTotal * 0.8f))) && !waveElevenAbove){
+                    waveElevenAbove = true;
+                    whileBreak = false;
+                    Debug.Log("Jalan kok");
                     StartCoroutine(InitiateCountdown());
+                    yield return null;
+                }
+                    
                 yield return new WaitForSeconds(1f);
             }
             whileBreak = false;
