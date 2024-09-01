@@ -887,8 +887,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d67f14db01eae304cbddee4f2de62530, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  towerHP: 50
-  towerRange: 1
+  towerHP: 100
+  towerRange: 1.5
   towerATK: 20
   towerATKSpeed: 1
   firePoint: {fileID: 3056295776651429893}

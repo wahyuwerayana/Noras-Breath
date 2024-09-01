@@ -1331,8 +1331,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be505abeb1d1ff241a26a967fd9d0e25, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 100
-  barricadeATK: 20
+  maxHealth: 150
+  barricadeATK: 10
   patchClick: {fileID: 733272403976447784, guid: 83450435cd9d5f54385c4768ccef2fe7, type: 3}
 --- !u!65 &2270335333515986500
 BoxCollider:
