@@ -37,7 +37,7 @@ public class AudioManager : MonoBehaviour
             source.volume = s.volume;
             source.loop = s.loop;
             if(s.needStartStopTime){
-                float startTime = Random.Range(0, 10);
+                float startTime = Random.Range(1, 10);
                 startTime -= 0.2f;
                 source.time = startTime;
                 source.Play();
