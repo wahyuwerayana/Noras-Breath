@@ -9992,6 +9992,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   needTwoButton: 0
+  isEnemyInside: 0
 --- !u!1 &1308158683796841225
 GameObject:
   m_ObjectHideFlags: 0
@@ -20712,6 +20713,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   needTwoButton: 0
+  isEnemyInside: 0
 --- !u!1 &3598999005520677591
 GameObject:
   m_ObjectHideFlags: 0
@@ -21096,7 +21098,7 @@ GameObject:
   - component: {fileID: 9091260028655393205}
   m_Layer: 0
   m_Name: Path Click Exit
-  m_TagString: Untagged
+  m_TagString: Path Click
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -21179,6 +21181,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   needTwoButton: 0
+  isEnemyInside: 0
 --- !u!65 &9091260028655393205
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -21198,8 +21201,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1.0000002}
-  m_Center: {x: 0, y: 0, z: -0.000030517578}
+  m_Size: {x: 1, y: 1.5041516, z: 2.527156}
+  m_Center: {x: -0.0000000011895196, y: 0.25207624, z: -0.76360834}
 --- !u!1 &4401233995371037297
 GameObject:
   m_ObjectHideFlags: 0
@@ -26470,7 +26473,7 @@ GameObject:
   - component: {fileID: 4316426325730457370}
   m_Layer: 0
   m_Name: Path Click Enter
-  m_TagString: Untagged
+  m_TagString: Path Click
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -26553,6 +26556,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   needTwoButton: 0
+  isEnemyInside: 0
 --- !u!65 &4316426325730457370
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -26572,8 +26576,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1.0000002}
-  m_Center: {x: 0, y: 0, z: -0.000030517578}
+  m_Size: {x: 1, y: 1.2427251, z: 1.5541307}
+  m_Center: {x: 5.227998e-10, y: 0.121362485, z: 0.032848623}
 --- !u!1 &6785693836821142682
 GameObject:
   m_ObjectHideFlags: 0
@@ -36868,6 +36872,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   needTwoButton: 0
+  isEnemyInside: 0
 --- !u!1 &8338880707897745453
 GameObject:
   m_ObjectHideFlags: 0
@@ -42297,6 +42302,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   needTwoButton: 0
+  isEnemyInside: 0
 --- !u!1 &9001188872065739530
 GameObject:
   m_ObjectHideFlags: 0

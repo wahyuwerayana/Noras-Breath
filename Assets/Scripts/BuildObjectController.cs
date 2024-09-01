@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class BuildObjectController : MonoBehaviour
@@ -8,6 +9,7 @@ public class BuildObjectController : MonoBehaviour
     public GameObject barricade;
     public GameObject[] tower;
     private GameManager gameManagerScript;
+    public TMP_Text warningText;
 
     private void Start() {
         gameManagerScript = GameObject.Find("Game Manager").GetComponent<GameManager>();
@@ -15,6 +17,13 @@ public class BuildObjectController : MonoBehaviour
 
     public void BuildBarricade()
     {
+        ClickableObject clickableObject = currentTransform.GetComponent<ClickableObject>();
+
+        if(clickableObject.isEnemyInside == true){
+            StartCoroutine(gameManagerScript.DisplayWarningText("Cannot Build Barricade on Enemy"));
+            return;
+        }
+
         if(GameManager.spiritShard < 125){
             StartCoroutine(gameManagerScript.DisplayWarningText("Spirit Shard is Not Enough!"));
             return;
@@ -22,7 +31,6 @@ public class BuildObjectController : MonoBehaviour
 
         gameManagerScript.ReduceSpiritShard(125);
         Instantiate(barricade, currentTransform.position, currentTransform.rotation * Quaternion.Euler(0, 90, 0));
-        ClickableObject clickableObject = currentTransform.GetComponent<ClickableObject>();
         clickableObject.ResetState();
         Destroy(currentTransform.gameObject);
     }

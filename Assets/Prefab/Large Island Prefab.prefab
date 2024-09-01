@@ -203,6 +203,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   needTwoButton: 0
+  isEnemyInside: 0
 --- !u!1 &282095008963972241
 GameObject:
   m_ObjectHideFlags: 0
@@ -11347,7 +11348,7 @@ GameObject:
   - component: {fileID: 3791071101365280053}
   m_Layer: 0
   m_Name: Path Click Exit
-  m_TagString: Untagged
+  m_TagString: Path Click
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -11430,6 +11431,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   needTwoButton: 0
+  isEnemyInside: 0
 --- !u!65 &3791071101365280053
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -11449,8 +11451,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1.0000002}
-  m_Center: {x: 0, y: 0, z: -0.000030517578}
+  m_Size: {x: 1, y: 1.7255235, z: 1.8126767}
+  m_Center: {x: -0.000000010428034, y: 0.3627627, z: 0.40630907}
 --- !u!1 &3005800932794202388
 GameObject:
   m_ObjectHideFlags: 0
@@ -12042,6 +12044,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   needTwoButton: 0
+  isEnemyInside: 0
 --- !u!1 &3773444572758167206
 GameObject:
   m_ObjectHideFlags: 0
@@ -22907,6 +22910,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   needTwoButton: 0
+  isEnemyInside: 0
 --- !u!1 &6105752146432867824
 GameObject:
   m_ObjectHideFlags: 0
@@ -23246,6 +23250,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   needTwoButton: 0
+  isEnemyInside: 0
 --- !u!1 &6392734011184318380
 GameObject:
   m_ObjectHideFlags: 0
@@ -33959,7 +33964,7 @@ GameObject:
   - component: {fileID: 4685388586060984312}
   m_Layer: 0
   m_Name: Path Click Enter
-  m_TagString: Untagged
+  m_TagString: Path Click
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -34042,6 +34047,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   needTwoButton: 0
+  isEnemyInside: 0
 --- !u!65 &4685388586060984312
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -34061,8 +34067,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1.0000002}
-  m_Center: {x: 0, y: 0, z: -0.000030517578}
+  m_Size: {x: 1, y: 1.4327406, z: 1.3334359}
+  m_Center: {x: 1.7138241e-10, y: 0.21637045, z: 0.014555857}
 --- !u!1 &8334055948492944660
 GameObject:
   m_ObjectHideFlags: 0
@@ -34704,6 +34710,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   needTwoButton: 0
+  isEnemyInside: 0
 --- !u!1 &8908993060641105828
 GameObject:
   m_ObjectHideFlags: 0
@@ -44502,3 +44509,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   needTwoButton: 0
+  isEnemyInside: 0

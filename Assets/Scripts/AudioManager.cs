@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Collections;
 using UnityEngine;
 
 public class AudioManager : MonoBehaviour
@@ -12,8 +13,6 @@ public class AudioManager : MonoBehaviour
         [Range(0f, 1f)] public float volume = 1f;
         public bool loop = false;
         public bool needStartStopTime;
-        public float startTime;
-        public float stopTime;
     }
 
     public Sound[] sounds;
@@ -38,12 +37,17 @@ public class AudioManager : MonoBehaviour
             source.volume = s.volume;
             source.loop = s.loop;
             if(s.needStartStopTime){
-                source.time = s.startTime;
-            }
-            source.Play();
-            if(s.needStartStopTime){
-                source.SetScheduledEndTime(s.stopTime);
-            }
+                float startTime = Random.Range(0, 10);
+                startTime -= 0.2f;
+                source.time = startTime;
+                source.Play();
+                StartCoroutine(StopAudio());
+                IEnumerator StopAudio(){
+                    yield return new WaitForSeconds(1f);
+                    source.Stop();
+                }
+            } else
+                source.Play();
         } else{
             Debug.LogWarning("Sound: " + soundName + " not found");
         }

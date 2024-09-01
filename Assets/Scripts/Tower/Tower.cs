@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using Lean.Pool;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class Tower : MonoBehaviour
@@ -14,45 +13,48 @@ public class Tower : MonoBehaviour
     public GameObject projectilePrefab;
     private float fireCountdown = 0f;
 
-    private Transform target;
+    private List<Transform> targets = new List<Transform>();
 
-    private void Update() {
-        if(target != null && target.GetComponent<Enemy>().isDead)
-            target = null;
-
-        FindTarget();
-
-        if(target != null){
-            if(fireCountdown <= 0f){
-                Shoot();
-                fireCountdown = 1f / towerATKSpeed;
-            }
-
-            fireCountdown -= Time.deltaTime;
-        }
+    private void Start() {
+        //towerShootSound = AudioManager.instance.
     }
 
-    void FindTarget(){
+
+    private void Update() {
+        targets.RemoveAll(target => target == null || target.GetComponent<Enemy>().isDead);
+
+        FindTargets();
+        if(targets.Count > 0){
+            if(fireCountdown <= 0f){
+                foreach(var target in targets){
+                    Shoot(target);
+                }
+                AudioManager.instance.Play("Tower Hit");
+                fireCountdown = 1f / towerATKSpeed;
+            }
+            
+            fireCountdown -= Time.deltaTime;
+        } 
+        // else{
+        //     FindTargets();
+        // }
+    }
+
+    void FindTargets(){
         GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
-        float shortestDistance = Mathf.Infinity;
-        GameObject nearestEnemy = null;
+        targets.Clear();
 
         foreach(GameObject enemy in enemies){
             float distanceToEnemy = Vector3.Distance(transform.position, enemy.transform.position);
-            if((distanceToEnemy < shortestDistance) && enemy.GetComponent<Enemy>().isDead == false){
-                shortestDistance = distanceToEnemy;
-                nearestEnemy = enemy;
+            if(distanceToEnemy <= towerRange && !enemy.GetComponent<Enemy>().isDead){
+                targets.Add(enemy.transform);
+                if(targets.Count >= 3)
+                    break;
             }
-        }
-
-        if((nearestEnemy != null && shortestDistance <= towerRange) && nearestEnemy.GetComponent<Enemy>().isDead == false){
-            target = nearestEnemy.transform;
-        } else{
-            target = null;
         }
     }
 
-    void Shoot(){
+    void Shoot(Transform target){
         GameObject projectileGO = (GameObject)LeanPool.Spawn(projectilePrefab, firePoint.position, firePoint.rotation);
         Projectile projectile = projectileGO.GetComponent<Projectile>();
 

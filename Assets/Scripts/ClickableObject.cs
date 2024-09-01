@@ -13,29 +13,12 @@ public class ClickableObject : MonoBehaviour
     private Button singleButton;
     public bool needTwoButton;
     private BuildObjectController buildObjectControllerReference;
-
+    public bool isEnemyInside = false;
     
     private static ClickableObject previousClickableObject = null;
     bool currentState = false, hovering = false;
-    private void OnMouseOver(){
+    private void OnMouseEnter(){
         hovering = true;
-        
-        if(Input.GetMouseButtonDown(0)){
-            if(previousClickableObject != null && previousClickableObject != this)
-                previousClickableObject.ResetState();
-
-            currentState = !currentState;
-            buildObjectControllerReference.currentTransform = this.transform;
-            if(needTwoButton){
-                multiButton.transform.position = multiButton.transform.position = new Vector3(transform.position.x, transform.position.y + .5f, transform.position.z);
-                multiButton.SetActive(currentState);
-            } else if(!needTwoButton){
-                singleButton.transform.position = singleButton.transform.position = new Vector3(transform.position.x, transform.position.y +.5f, transform.position.z);
-                singleButton.gameObject.SetActive(currentState);
-            }
-
-            previousClickableObject = this;
-        }
     }
 
     private void OnMouseExit() {
@@ -54,12 +37,39 @@ public class ClickableObject : MonoBehaviour
     private void Update(){
         if(currentState && !hovering && Input.GetMouseButtonDown(0) && !EventSystem.current.IsPointerOverGameObject()){
             ResetState();
-        } 
+        }
+
+        if(Input.GetMouseButtonDown(0) && hovering){
+            if(previousClickableObject != null && previousClickableObject != this)
+                previousClickableObject.ResetState();
+
+            currentState = !currentState;
+            buildObjectControllerReference.currentTransform = this.transform;
+            if(needTwoButton){
+                multiButton.transform.position = new Vector3(transform.position.x, transform.position.y + .5f, transform.position.z);
+                multiButton.SetActive(currentState);
+            } else if(!needTwoButton){
+                singleButton.transform.position = new Vector3(transform.position.x, transform.position.y +.5f, transform.position.z);
+                singleButton.gameObject.SetActive(currentState);
+            }
+
+            previousClickableObject = this;
+        }
     }
 
     public void ResetState(){
         currentState = false;
         singleButton.gameObject.SetActive(false);
         multiButton.gameObject.SetActive(false);
+    }
+
+    private void OnTriggerExit(Collider other) {
+        if(this.gameObject.CompareTag("Path Click") && other.gameObject.CompareTag("Enemy"))
+            isEnemyInside = false;
+    }
+
+    private void OnTriggerStay(Collider other) {
+        if(this.gameObject.CompareTag("Path Click") && other.gameObject.CompareTag("Enemy"))
+            isEnemyInside = true;
     }
 }
