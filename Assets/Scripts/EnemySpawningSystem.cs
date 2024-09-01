@@ -9,7 +9,7 @@ public class EnemySpawningSystem : MonoBehaviour
     public Vector3 offset;
     public Transform spawnPos;
     int enemyTotal;
-    int wave = 10;
+    int wave = 0;
     float waveCountdown;
     public TMP_Text countdownText;
     public TMP_Text numberOfEnemy;
