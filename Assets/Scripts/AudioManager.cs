@@ -11,6 +11,9 @@ public class AudioManager : MonoBehaviour
         public AudioClip clip;
         [Range(0f, 1f)] public float volume = 1f;
         public bool loop = false;
+        public bool needStartStopTime;
+        public float startTime;
+        public float stopTime;
     }
 
     public Sound[] sounds;
@@ -34,7 +37,13 @@ public class AudioManager : MonoBehaviour
             source.clip = s.clip;
             source.volume = s.volume;
             source.loop = s.loop;
+            if(s.needStartStopTime){
+                source.time = s.startTime;
+            }
             source.Play();
+            if(s.needStartStopTime){
+                source.SetScheduledEndTime(s.stopTime);
+            }
         } else{
             Debug.LogWarning("Sound: " + soundName + " not found");
         }

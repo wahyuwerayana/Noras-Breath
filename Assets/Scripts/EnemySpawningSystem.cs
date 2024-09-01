@@ -23,10 +23,10 @@ public class EnemySpawningSystem : MonoBehaviour
             countdownText.text = "";
             startButtonParent.gameObject.SetActive(false);
             wave++;
-            Debug.Log("Wave: " + wave +  " Start!");
+            //Debug.Log("Wave: " + wave +  " Start!");
             enemyTotal = (int)GetEnemyTotal(wave);
             int enemyRemaining = enemyTotal;
-            Debug.Log(enemyRemaining);
+            //Debug.Log(enemyRemaining);
             while(enemyRemaining > 0){
                 Instantiate(enemyPrefabs[Random.Range(0, enemyPrefabs.Count)], spawnPos.position + offset, spawnPos.rotation);
                 enemyRemaining--;
@@ -58,7 +58,6 @@ public class EnemySpawningSystem : MonoBehaviour
 
     
     IEnumerator InitiateCountdown(){
-        Debug.Log("start coroutine");
         waveCountdown = 30f;
         countdownText.text = "Wave " + (wave + 1).ToString() + " in " + waveCountdown + "s";
         while(waveCountdown > 0){

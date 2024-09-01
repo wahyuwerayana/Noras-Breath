@@ -76,7 +76,7 @@ public class Enemy : MonoBehaviour
                 animator.SetFloat("y", 0f);
                 if(Time.time >= lastAttackTime){
                     lastAttackTime = Time.time + attackDelay;
-                    Attack();
+                    Attack(direction);
                 }
             }
         }
@@ -88,7 +88,7 @@ public class Enemy : MonoBehaviour
         if(other.CompareTag("Waypoint")){
             if(waypointIndex < waypoints.Count - 1){
                 waypointIndex++;
-                Debug.Log("Current Waypoint: " + other.name);
+                //Debug.Log("Current Waypoint: " + other.name);
             }
         }
     }
@@ -108,7 +108,12 @@ public class Enemy : MonoBehaviour
         return false;
     }
 
-    void Attack(){
+    void Attack(Vector3 direction){
         animator.SetTrigger("attack");
+        RaycastHit hit;
+        if(Physics.Raycast(transform.position, direction, out hit, detectionRange, obstacleLayer)){
+            hit.transform.GetComponent<Barricade>().BarricadeTakeDamage(enemyATK);
+            enemyCurrentHP -= hit.transform.GetComponent<Barricade>().InflictPoison();
+        }
     }
 }

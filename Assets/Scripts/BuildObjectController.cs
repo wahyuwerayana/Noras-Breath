@@ -15,6 +15,12 @@ public class BuildObjectController : MonoBehaviour
 
     public void BuildBarricade()
     {
+        if(GameManager.spiritShard < 125){
+            StartCoroutine(gameManagerScript.DisplayWarningText("Spirit Shard is Not Enough!"));
+            return;
+        }
+
+        gameManagerScript.ReduceSpiritShard(125);
         Instantiate(barricade, currentTransform.position, currentTransform.rotation * Quaternion.Euler(0, 90, 0));
         ClickableObject clickableObject = currentTransform.GetComponent<ClickableObject>();
         clickableObject.ResetState();

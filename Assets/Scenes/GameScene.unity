@@ -1055,7 +1055,7 @@ GameObject:
   - component: {fileID: 308221244}
   - component: {fileID: 308221247}
   m_Layer: 5
-  m_Name: Single Button
+  m_Name: Barricade Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3963,7 +3963,7 @@ GameObject:
   - component: {fileID: 1369283901}
   - component: {fileID: 1369283904}
   m_Layer: 5
-  m_Name: First Button
+  m_Name: Build Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4256,12 +4256,12 @@ GameObject:
   - component: {fileID: 1498791139}
   - component: {fileID: 1498791142}
   m_Layer: 5
-  m_Name: Second Button
+  m_Name: Barrack Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1498791138
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4592,7 +4592,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Button
+  m_text: Barricade
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -5472,14 +5472,37 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: 91ff6b19a353b7a43a11d1ac5b0c4767, type: 3}
     volume: 0.2
     loop: 0
+    needStartStopTime: 0
+    startTime: 0
+    stopTime: 0
   - name: Portal Sound
     clip: {fileID: 8300000, guid: 78ae463cd4b468e43888fd5fc2b092f9, type: 3}
     volume: 0.061
     loop: 0
+    needStartStopTime: 0
+    startTime: 0
+    stopTime: 0
   - name: Game Over Sound
     clip: {fileID: 8300000, guid: b48751db54e41464495e61edc18abc3b, type: 3}
     volume: 0.1
     loop: 0
+    needStartStopTime: 0
+    startTime: 0
+    stopTime: 0
+  - name: Poison Bush Hit
+    clip: {fileID: 8300000, guid: d965eeb5afaa5814c96728615f934fc2, type: 3}
+    volume: 0.2
+    loop: 0
+    needStartStopTime: 0
+    startTime: 0
+    stopTime: 0
+  - name: Tower Hit
+    clip: {fileID: 8300000, guid: 385a03e85326bf64eb79131c4b4f3748, type: 3}
+    volume: 0.2
+    loop: 0
+    needStartStopTime: 1
+    startTime: 0
+    stopTime: 0
 --- !u!4 &1915608504
 Transform:
   m_ObjectHideFlags: 0
