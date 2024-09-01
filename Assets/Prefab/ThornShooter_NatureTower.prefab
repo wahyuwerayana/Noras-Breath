@@ -889,7 +889,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   towerHP: 100
   towerRange: 1.5
-  towerATK: 20
+  towerATK: 10
   towerATKSpeed: 1
   firePoint: {fileID: 3056295776651429893}
   projectilePrefab: {fileID: 592699021451069354, guid: 6770d4f0cd4c0524db825087694f9bf8, type: 3}

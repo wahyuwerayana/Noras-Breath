@@ -57,7 +57,7 @@ public class EnemySpawningSystem : MonoBehaviour
         else if(currWave % 5 == 0)
             return GetEnemyTotal(currWave - 1);
         
-        return GetEnemyTotal(currWave - (currWave % 5)) * 1.2f;
+        return GetEnemyTotal(currWave - (currWave % 5)) * 1.4f;
     }
 
     

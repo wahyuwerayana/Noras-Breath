@@ -13,7 +13,7 @@ public class GameManager : MonoBehaviour
     public TMP_Text warningText;
 
     private void Start() {
-        spiritShard = 200;
+        spiritShard = 150;
         healthText.text = playerHP.ToString();
         spiritShardText.text = spiritShard.ToString();
     }
