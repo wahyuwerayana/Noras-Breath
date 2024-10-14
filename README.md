@@ -1,6 +1,6 @@
 # **Nora's Breath**
 <div align="center">
-  <img src="https://github.com/user-attachments/assets/073f2065-778b-410d-bddf-e20f936e4695" width="60%">
+  <img src="https://github.com/user-attachments/assets/24b059a6-c748-44e5-a877-8ff380faa1f4" width="60%">
 </div>
 
 ## 📄About
